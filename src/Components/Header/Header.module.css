@@ -1,0 +1,11 @@
+.Header {
+
+    grid-area: h;
+    background-color: cadetblue;
+
+}
+
+.Header img {
+    max-width: 110px;
+
+}

@@ -1,0 +1,20 @@
+.Nav {
+    grid-area: n;
+    background-color: cadetblue;
+
+}
+
+.menu {
+    color: azure;
+    font-size: 26px;
+}
+
+
+.item {
+    text-decoration: none;
+}
+
+.active {
+    color: white;
+    font-weight: bold;
+}
