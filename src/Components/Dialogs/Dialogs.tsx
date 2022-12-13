@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {ChangeEvent, useRef} from "react";
 import s from "./Dialogs.module.css"
 import {Dialog} from "./Dialog/DialogItem";
 import {Message} from "./Message/Message";
@@ -10,6 +10,9 @@ import {Route} from "react-router-dom";
 type DialogsProps = {
     dialogData:Array <DialogPropsType>
     messageData:Array<MessagePropsType>
+    newMessageText: string,
+    addText: () => void
+    updateNewMessageText:(newText: string) => void
 }
 
 export const Dialogs = (props:DialogsProps) => {
@@ -17,12 +20,16 @@ export const Dialogs = (props:DialogsProps) => {
     let dialogElement = props.dialogData.map((d:DialogPropsType) =>  <Dialog {...d}/>)
     let messageElement = props.messageData.map((m:MessagePropsType) =>  <Message message={m.message} id={m.id}/>)
 
-    let newMessageElement =useRef<HTMLTextAreaElement>(null)
+
 
     let addText = () => {
-        debugger
-        let text = newMessageElement.current && newMessageElement.current.value
-        alert(text)
+        props.addText()
+    }
+
+    let updateNewMessageText = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        if (e.currentTarget) {
+            props.updateNewMessageText(e.currentTarget.value)
+        }
     }
 
 
@@ -33,7 +40,7 @@ export const Dialogs = (props:DialogsProps) => {
         <div className={s.messages}>
             { messageElement }
         </div>
-        <textarea ref={newMessageElement}></textarea>
+        <textarea  value={props.newMessageText} onChange={updateNewMessageText}></textarea>
         <button onClick={addText}>+</button>
     </div>
 }

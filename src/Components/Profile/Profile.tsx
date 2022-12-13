@@ -6,7 +6,9 @@ import {PostPropsType} from "../../Redux/State";
 
 export type PostDataProps= {
     postData: Array<PostPropsType>,
-    addPost: (message: string) => void
+    addPost: () => void,
+    newPostText: string,
+    updateNewPostText:(newText: string) => void
 }
 
 
