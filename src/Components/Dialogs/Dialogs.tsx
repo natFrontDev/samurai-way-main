@@ -2,33 +2,39 @@ import React, {ChangeEvent, useRef} from "react";
 import s from "./Dialogs.module.css"
 import {Dialog} from "./Dialog/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogPropsType, MessagePropsType} from "../../Redux/State";
-import {Route} from "react-router-dom";
+import {
+
+    ActionDispatchTypes,
+    DialogPropsType,
+    MessagePropsType,
+} from "../../Redux/State";
+import {addTextAC, updateNewMessageTextAC} from "../../Redux/Dialogs-reducer";
+
 
 
 
 type DialogsProps = {
-    dialogData:Array <DialogPropsType>
-    messageData:Array<MessagePropsType>
-    newMessageText: string,
-    addText: () => void
-    updateNewMessageText:(newText: string) => void
+    dialogPage: {dialogData:Array <DialogPropsType>,
+        messageData:Array<MessagePropsType>,
+        newMessageText: string},
+    dispatch: (action: ActionDispatchTypes) => void
 }
 
 export const Dialogs = (props:DialogsProps) => {
 
-    let dialogElement = props.dialogData.map((d:DialogPropsType) =>  <Dialog {...d}/>)
-    let messageElement = props.messageData.map((m:MessagePropsType) =>  <Message message={m.message} id={m.id}/>)
+    let dialogElement = props.dialogPage.dialogData.map((d:DialogPropsType) =>  <Dialog {...d}/>)
+    let messageElement = props.dialogPage.messageData.map((m:MessagePropsType) =>  <Message message={m.message} id={m.id}/>)
 
 
 
     let addText = () => {
-        props.addText()
+        props.dispatch (addTextAC())
     }
 
     let updateNewMessageText = (e:ChangeEvent<HTMLTextAreaElement>) => {
         if (e.currentTarget) {
-            props.updateNewMessageText(e.currentTarget.value)
+            const newText = e.currentTarget.value
+            props.dispatch(updateNewMessageTextAC(newText))
         }
     }
 
@@ -39,8 +45,9 @@ export const Dialogs = (props:DialogsProps) => {
         </div>
         <div className={s.messages}>
             { messageElement }
+            <textarea  value={props.dialogPage.newMessageText} onChange={updateNewMessageText}></textarea>
+            <button onClick={addText}> Send </button>
         </div>
-        <textarea  value={props.newMessageText} onChange={updateNewMessageText}></textarea>
-        <button onClick={addText}>+</button>
+
     </div>
 }

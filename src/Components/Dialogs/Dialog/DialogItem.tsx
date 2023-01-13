@@ -8,8 +8,8 @@ import {DialogPropsType} from "../../../Redux/State";
 
 export const Dialog  = (props: DialogPropsType) => {
    const path = "/dialogs/" + props.id
-   return <div className={s.dialog +" " + s.active}>
-       <NavLink to = {path}  className={s.dialog}> {props.name}</NavLink>
+   return <div >
+       <NavLink to = {path} className={s.dialog} activeClassName={s.active}> {props.name}</NavLink>
    </div>
 }
 

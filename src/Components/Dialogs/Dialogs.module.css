@@ -8,10 +8,13 @@
     padding: 15px;
 }
 
-.dialogs_item .active {
+.active {
     color: red;
 }
 
+.dialog {
+    text-decoration: none;
+}
 
 
 .messages {
