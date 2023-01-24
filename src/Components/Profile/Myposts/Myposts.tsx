@@ -1,20 +1,26 @@
 import React, {ChangeEvent, useRef} from "react";
 import s from "./Myposts.module.css"
 import {Post, } from "./Post/Post";
-import {PostDataProps} from "../Profile";
-import { PostPropsType} from "../../../Redux/State";
-import {addPostAC, updateNewPostTextAC} from "../../../Redux/Profile-reducer";
+import { PostPropsType} from "../../../Redux/Profile-reducer";
 
 
 
 
+export type MyPostsDataProps= {
+    profilePage: {postData: Array<PostPropsType>,
+        newPostText: string},
+    addPost: ( ) => void,
+    updateNewPostText: (newPost:string) => void
+}
 
-export const MyPosts = (props:PostDataProps)=> {
+
+
+export const MyPosts = (props:MyPostsDataProps)=> {
     let postElement = props.profilePage.postData.map ((p:PostPropsType) => <Post key={p.id} {...p}/>)
 
 
     let addPost = () => {
-        props.dispatch (addPostAC())
+        props.addPost()
     }
 
 
@@ -22,7 +28,7 @@ export const MyPosts = (props:PostDataProps)=> {
     let updateNewPostText = (e:ChangeEvent<HTMLTextAreaElement>) => {
         if (e.currentTarget) {
             const newPost = e.currentTarget.value
-            props.dispatch(updateNewPostTextAC(newPost))
+            props.updateNewPostText(newPost)
         }
     }
 

@@ -1,9 +1,6 @@
 
-
- //let RerenderTree = () =>{}
-
-import profileReducer from "./Profile-reducer";
- import dialogsReducer from "./Dialogs-reducer";
+import profileReducer, {addPostType,  updateNewPostTextType} from "./Profile-reducer";
+ import dialogsReducer, {addTextType, updateNewMessageTextType} from "./Dialogs-reducer";
  import sidebarReducer from "./Sidebar-reducer";
 
  export type DialogPropsType = {
@@ -63,7 +60,6 @@ export type AppPropsType = {
 export type ActionDispatchTypes = addTextType | addPostType | updateNewMessageTextType | updateNewPostTextType
 
 
-
  export type StorePropsType = {
     _state: AppPropsType,
     subscribe:  (observer:()=>void) => void,
@@ -75,26 +71,6 @@ export type ActionDispatchTypes = addTextType | addPostType | updateNewMessageTe
     // addPost: () => void,
     // updateNewPostText:(newText: string) => void
 }
-
-
-
- export type addPostType = {
-     type:"ADD-POST"
- }
-
- export type updateNewPostTextType = {
-     type: "UPDATE-NEW-POST-TEXT",
-     newPost:string
- }
-
- export type  addTextType = {
-     type: "ADD-TEXT"
- }
-
- export type updateNewMessageTextType = {
-     type: "UPDATE-NEW-MESSAGE-TEXT",
-     newText: string
- }
 
 
  export const store: StorePropsType = {

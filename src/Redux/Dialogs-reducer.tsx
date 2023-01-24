@@ -1,30 +1,52 @@
-import {
-    ActionDispatchTypes,
-    addTextType,
-    DialogPropsType,
-    MessagePropsType, PostPropsType, updateNewMessageTextType,
-
-} from "./State";
+import {ActionDispatchTypes} from "./Redux-store";
 
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
 const ADD_TEXT= "ADD-TEXT"
 
+export type  addTextType = {
+    type: typeof ADD_TEXT
+}
+export type updateNewMessageTextType = {
+    type: typeof UPDATE_NEW_MESSAGE_TEXT,
+    newText: string
+}
 
+export type DialogPropsType = {
+    id: number
+    name: string
+}
 
-// export type addPostType = {
-//     type:"ADD-POST"
-// }
-//
-// export type updateNewPostTextType = {
-//     type: "UPDATE-NEW-POST-TEXT",
-//     newPost:string
-// }
+const dialogData:Array <DialogPropsType> = [
+    {name: "Olga", id: 1},
+    {name: "Vera", id: 2},
+    {name: "Inga", id: 3},
+    {name: "Anna", id: 4},
+    {name: "Vladimir", id: 5},
+]
 
-const dialogsReducer = (state:{dialogData:Array <DialogPropsType>, messageData:Array<MessagePropsType>,
-    newMessageText: string },action:ActionDispatchTypes)=> {
+export type MessagePropsType = {
+    message: string
+    id:number
+}
+
+const messageData: Array<MessagePropsType> = [
+    {message: 'Hello', id: 1},
+    {message: 'How are you doing?', id: 2},
+    {message: 'Who are you?', id: 3},
+    {message: "'Yo'", id: 4},
+    {message: "'Hello'", id: 5},
+]
+
+const initialState = {
+    dialogData: dialogData,
+    messageData: messageData,
+    newMessageText: "hello",
+}
+
+const dialogsReducer = (state = initialState,action:ActionDispatchTypes): typeof state=> {
 
     switch (action.type) {
-        case "ADD-TEXT":
+        case ADD_TEXT:
             const newMessage:MessagePropsType = {
                 id: new Date().getTime(),
                 message: state.newMessageText,
@@ -32,7 +54,7 @@ const dialogsReducer = (state:{dialogData:Array <DialogPropsType>, messageData:A
             state.messageData.push(newMessage)
             state.newMessageText = " "
             return state
-        case "UPDATE-NEW-MESSAGE-TEXT":
+        case UPDATE_NEW_MESSAGE_TEXT:
             state.newMessageText = action.newText
             return state
         default:

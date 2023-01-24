@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { store} from "./Redux/State";
 import {BrowserRouter} from "react-router-dom";
 import {App} from "./App";
+import {store} from "./Redux/Redux-store";
+import {Provider} from "./StoreContext";
 
 export const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store = {store} />
+            <Provider store={store}>
+                <App/>
+            </Provider>,
         </BrowserRouter>,
         document.getElementById('root')
     );

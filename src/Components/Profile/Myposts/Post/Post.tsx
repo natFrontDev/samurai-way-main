@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Post.module.css"
-import {PostPropsType} from "../../../../Redux/State";
+import {PostPropsType} from "../../../../Redux/Profile-reducer";
 
 
 
