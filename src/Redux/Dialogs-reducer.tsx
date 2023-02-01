@@ -43,20 +43,21 @@ const initialState = {
     newMessageText: "hello",
 }
 
-const dialogsReducer = (state = initialState,action:ActionDispatchTypes): typeof state=> {
-
+export type DialogPageType = typeof initialState
+const dialogsReducer = (state: DialogPageType = initialState,action:ActionDispatchTypes): DialogPageType=> {
+debugger
+    let stateCopy;
     switch (action.type) {
         case ADD_TEXT:
             const newMessage:MessagePropsType = {
                 id: new Date().getTime(),
                 message: state.newMessageText,
             }
-            state.messageData.push(newMessage)
-            state.newMessageText = " "
-            return state
+            stateCopy = {...state, messageData: [...state.messageData, newMessage], newMessageText:" " }
+            return  stateCopy;
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            return state
+             stateCopy= {...state, newMessageText:action.newText}
+            return stateCopy
         default:
             return state
     }

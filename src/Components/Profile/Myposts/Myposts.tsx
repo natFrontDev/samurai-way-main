@@ -2,20 +2,21 @@ import React, {ChangeEvent, useRef} from "react";
 import s from "./Myposts.module.css"
 import {Post, } from "./Post/Post";
 import { PostPropsType} from "../../../Redux/Profile-reducer";
+import {MyPostsPagePropsType} from "./MypostsContainer";
 
 
 
+//
+// export type MyPostsDataProps= {
+//     profilePage: {postData: Array<PostPropsType>,
+//         newPostText: string},
+//     addPost: ( ) => void,
+//     updateNewPostText: (newPost:string) => void
+// }
+//
+//
 
-export type MyPostsDataProps= {
-    profilePage: {postData: Array<PostPropsType>,
-        newPostText: string},
-    addPost: ( ) => void,
-    updateNewPostText: (newPost:string) => void
-}
-
-
-
-export const MyPosts = (props:MyPostsDataProps)=> {
+export const MyPosts = (props:MyPostsPagePropsType)=> {
     let postElement = props.profilePage.postData.map ((p:PostPropsType) => <Post key={p.id} {...p}/>)
 
 

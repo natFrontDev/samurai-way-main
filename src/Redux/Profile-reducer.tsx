@@ -40,10 +40,10 @@ const initialState = {
     newPostText: "it-kamasutra.com",
 }
 
- type profileReducerType =  typeof initialState
+export type ProfilePageType =  typeof initialState
 
-const profileReducer = (state:profileReducerType = initialState,action:ActionDispatchTypes):profileReducerType=> {
-
+const profileReducer = (state:ProfilePageType = initialState,action:ActionDispatchTypes):ProfilePageType => {
+    let stateCopy;
     switch (action.type) {
         case ADD_POST:
             const newPost: PostPropsType = {
@@ -51,12 +51,11 @@ const profileReducer = (state:profileReducerType = initialState,action:ActionDis
                 message: state.newPostText,
                 likesCount: 0
             }
-            state.postData.push(newPost)
-            state.newPostText = " "
-            return state
+            stateCopy = {...state, postData:[...state.postData, newPost], newPostText:""}
+            return stateCopy
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newPost
-            return state
+            stateCopy = {...state, newPostText:action.newPost}
+            return stateCopy
         default:
             return state
     }

@@ -2,13 +2,14 @@ import React from 'react';
 import './App.css';
 import { Route} from "react-router-dom";
 import {Header} from "./Components/Header/Header";
-import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {News} from "./Components/News/News";
 import {StorePropsType} from "./Redux/Redux-store";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
+import {NavbarContainer} from "./Components/Navbar/NavbarContainer";
+import {UsersContainer} from "./Components/Users/UsersContainer";
 
 
 
@@ -25,7 +26,7 @@ export const App =(props:any) => {
   return (
           <div className="App_wrapper">
               <Header/>
-              <Navbar
+              <NavbarContainer
                   // {...state.sitebar}
               />
               <div className="App_wrapper_content">
@@ -39,6 +40,7 @@ export const App =(props:any) => {
                  <Route path={"/news"} render = {()=> <News/>}/>
                  <Route path={"/music"} render = {()=> <Music/>}/>
                  <Route path={"/settings"} render = {()=> <Settings/>}/>
+                 <Route path={"/users"} render = {()=> <UsersContainer/>}/>
               </div>
           </div>
   );

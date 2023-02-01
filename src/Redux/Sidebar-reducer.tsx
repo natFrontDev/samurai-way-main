@@ -17,10 +17,9 @@ const initialState = {
     friendsData:friendsData
 }
 
+export type SideBarPageType = typeof initialState
 
-const sidebarReducer =(state = initialState, action: ActionDispatchTypes)=> {
-
-
+const sidebarReducer =(state:SideBarPageType = initialState, action: ActionDispatchTypes):SideBarPageType=> {
     return state
  }
 
