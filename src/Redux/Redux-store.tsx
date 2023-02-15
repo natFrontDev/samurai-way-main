@@ -10,10 +10,12 @@ const reducers = combineReducers({
     profilePage: profileReducer,
     dialogPage:dialogsReducer,
     sideBar: sidebarReducer,
-    usersPage: usersReducer}
+    usersPage: usersReducer
+}
 )
 
 export let store = createStore(reducers)
 
 export type StorePropsType =  typeof store
+
 export type StatePropsType =  ReturnType <typeof reducers>

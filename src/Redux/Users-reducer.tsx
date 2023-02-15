@@ -36,9 +36,10 @@ export const setUsersAC = (users:Array<UserPropsType>):setUsersType => ({
 
 export type UserPropsType = {
     id: number,
-    fullName: string,
+    name: string,
     followed: boolean,
-    photo: string,
+    status: string|null
+    photos:  {small:string, large:string }
     location: {city: string, country: string}
 }
 
@@ -51,7 +52,6 @@ const initialState = {
 export type UsersPageType = typeof initialState
 
 const usersReducer = (state: UsersPageType = initialState,action:UsersDispatchActionType): UsersPageType=> {
-    debugger
     let copyState
     switch (action.type) {
         case FOLLOW:
