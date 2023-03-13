@@ -1,20 +1,13 @@
-import React from "react";
+import React, {FC} from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./Myposts/MypostsContainer";
-
-//
-// export type ProfileDataProps= {
-//     profilePage: {postData: Array<PostPropsType>,
-//     newPostText: string},
-//     dispatch: (action: ActionDispatchTypes) => void
-// }
+import {mapStateToPropsType} from "./ProfileContainer";
 
 
-export const Profile = ( ) => {
+export const Profile = (props:mapStateToPropsType) => {
     return <div>
-        <ProfileInfo />
+        <ProfileInfo {...props}/>
         <MyPostsContainer
-           //{...props}
         />
     </div>
 }

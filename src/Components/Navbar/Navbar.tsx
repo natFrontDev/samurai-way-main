@@ -6,7 +6,6 @@ import {NavbarPropsType} from "./NavbarContainer";
 
 
 export const Navbar = (props:NavbarPropsType) => {
-
             return <nav className={s. Nav}>
             <ul className={s. menu}>
             <li > <NavLink to={'/profile'} activeClassName={s.active} className={s.item}> Profile</NavLink>  </li>

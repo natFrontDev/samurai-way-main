@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { Route} from "react-router-dom";
 import {Header} from "./Components/Header/Header";
-import {Profile} from "./Components/Profile/Profile";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {News} from "./Components/News/News";
@@ -10,6 +9,8 @@ import {StorePropsType} from "./Redux/Redux-store";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import {NavbarContainer} from "./Components/Navbar/NavbarContainer";
 import {UsersContainer} from "./Components/Users/UsersContainer";
+import {ProfileAPIComponent} from "./Components/Profile/ProfileAPIComponent";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 
 
 
@@ -33,7 +34,7 @@ export const App =(props:any) => {
                  <Route path={"/dialogs"} render = {()=> <DialogsContainer
                      // dialogPage = {state.dialogPage} dispatch={props.store.dispatch.bind(props.store)}
                                                                    />}/>
-                 <Route path={"/profile"} render = {()=> <Profile
+                 <Route path={"/profile/:userId?"} render = {()=> <ProfileContainer
                      // profilePage={state.profilePage}
                      // dispatch={props.store.dispatch.bind(props.store)}
                                                                   />}/>
